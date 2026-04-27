@@ -31,7 +31,7 @@ body {
   text-align: center;
 }
 
-/* FRAME FOTO (ANTI GOYANG) */
+/* photo frame (ANTI GOYANG) */
 .photo-frame {
   width: 260px;
   height: 260px;
@@ -54,7 +54,7 @@ h1 {
   text-shadow: 0 0 10px #ff4d6d;
 }
 
-/* TYPEWRITER TEXT */
+/* text */
 #text {
   font-size: 17px;
   line-height: 1.9;
@@ -63,19 +63,6 @@ h1 {
   white-space: pre-line;
   margin-top: 20px;
   min-height: 200px;
-}
-
-/* cursor */
-.cursor {
-  display: inline-block;
-  width: 2px;
-  background: white;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  0%,100% {opacity: 0;}
-  50% {opacity: 1;}
 }
 
 /* button */
@@ -90,18 +77,20 @@ button {
   box-shadow: 0 0 10px #ff4d6d;
 }
 
-/* hearts */
+/* HEART FIX (smooth + ringan) */
 .heart {
   position: fixed;
+  bottom: -20px;
   color: #ff4d6d;
-  animation: floatUp 5s linear infinite;
+  animation: floatUp 6s linear forwards;
   pointer-events: none;
+  opacity: 0.8;
 }
 
 @keyframes floatUp {
-  0% { transform: translateY(100vh); opacity: 0; }
-  50% { opacity: 1; }
-  100% { transform: translateY(-10vh); opacity: 0; }
+  0% { transform: translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-110vh); opacity: 0; }
 }
 
 /* responsive */
@@ -167,9 +156,13 @@ anyway, enjoy your day ya. hari ini jangan overthink dulu, just be happy ✨
 note: tadinya mau full english biar keliatan keren dikit, tapi gua inget lu… yaudah lah ya 😜`;
 
 let index = 0;
-let speed = 30;
+let speed = 28;
+let started = false;
 
 function start() {
+  if (started) return;
+  started = true;
+
   document.getElementById("music").play();
   typeWriter();
 }
@@ -182,7 +175,7 @@ function typeWriter() {
   }
 }
 
-/* slideshow */
+/* slideshow (smooth & stabil) */
 const images = ["couple1.jpeg","couple2.jpeg","couple3.jpeg"];
 let i = 0;
 
@@ -190,19 +183,21 @@ setInterval(() => {
   i = (i + 1) % images.length;
   document.getElementById("bg").src = images[i];
   document.getElementById("mainPhoto").src = images[i];
-}, 4000);
+}, 5000);
 
-/* hearts */
+/* hearts (ringan, gak spam) */
 function createHeart() {
   const heart = document.createElement("div");
-  heart.classList.add("heart");
+  heart.className = "heart";
   heart.innerText = "💗";
   heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (Math.random() * 10 + 16) + "px";
+
   document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 5000);
+  setTimeout(() => heart.remove(), 6000);
 }
 
-setInterval(createHeart, 500);
+setInterval(createHeart, 1200);
 </script>
 
 </body>
