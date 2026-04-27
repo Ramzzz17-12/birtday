@@ -31,24 +31,30 @@ body {
   text-align: center;
 }
 
-/* foto */
-.main-photo {
+/* FRAME FOTO (ANTI GOYANG) */
+.photo-frame {
   width: 260px;
-  height: auto;
-  border-radius: 20px;
-  display: block;
+  height: 260px;
   margin: 0 auto 20px;
+  border-radius: 20px;
+  overflow: hidden;
   box-shadow: 0 0 20px #ff4d6d;
+}
+
+.photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* title */
 h1 {
-  font-size: 36px;
+  font-size: 34px;
   color: #ff4d6d;
   text-shadow: 0 0 10px #ff4d6d;
 }
 
-/* typewriter text */
+/* TYPEWRITER TEXT */
 #text {
   font-size: 17px;
   line-height: 1.9;
@@ -64,7 +70,6 @@ h1 {
   display: inline-block;
   width: 2px;
   background: white;
-  margin-left: 5px;
   animation: blink 1s infinite;
 }
 
@@ -90,12 +95,20 @@ button {
   position: fixed;
   color: #ff4d6d;
   animation: floatUp 5s linear infinite;
+  pointer-events: none;
 }
 
 @keyframes floatUp {
   0% { transform: translateY(100vh); opacity: 0; }
   50% { opacity: 1; }
   100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* responsive */
+@media(max-width:768px){
+  h1 { font-size: 26px; }
+  #text { font-size: 15px; }
+  .photo-frame { width: 200px; height: 200px; }
 }
 </style>
 </head>
@@ -106,7 +119,9 @@ button {
 
 <div class="container">
 
-  <img id="mainPhoto" class="main-photo" src="couple1.jpeg">
+  <div class="photo-frame">
+    <img id="mainPhoto" src="couple1.jpeg">
+  </div>
 
   <h1>happy birthday 💗</h1>
 
@@ -152,7 +167,7 @@ anyway, enjoy your day ya. hari ini jangan overthink dulu, just be happy ✨
 note: tadinya mau full english biar keliatan keren dikit, tapi gua inget lu… yaudah lah ya 😜`;
 
 let index = 0;
-let speed = 30; // makin kecil makin cepet
+let speed = 30;
 
 function start() {
   document.getElementById("music").play();
@@ -184,7 +199,6 @@ function createHeart() {
   heart.innerText = "💗";
   heart.style.left = Math.random() * 100 + "vw";
   document.body.appendChild(heart);
-
   setTimeout(() => heart.remove(), 5000);
 }
 
