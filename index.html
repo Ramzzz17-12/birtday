@@ -11,10 +11,9 @@ body {
   background: #0a0a0a;
   font-family: 'Segoe UI', sans-serif;
   color: white;
-  overflow: hidden;
 }
 
-/* background blur */
+/* background */
 .bg {
   position: fixed;
   width: 100%;
@@ -26,47 +25,58 @@ body {
 
 /* container */
 .container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
   text-align: center;
-  width: 90%;
-  max-width: 600px;
 }
 
-/* FOTO UTAMA (INI YANG GAK KE POTONG) */
+/* foto */
 .main-photo {
-  width: 220px;
-  height: 220px;
-  object-fit: cover;
+  width: 260px;
+  height: auto;
   border-radius: 20px;
-  margin: 0 auto 20px;
   display: block;
+  margin: 0 auto 20px;
   box-shadow: 0 0 20px #ff4d6d;
 }
 
-/* neon title */
+/* title */
 h1 {
-  font-size: 28px;
+  font-size: 36px;
   color: #ff4d6d;
-  text-shadow:
-    0 0 5px #ff4d6d,
-    0 0 10px #ff4d6d,
-    0 0 20px #ff4d6d;
+  text-shadow: 0 0 10px #ff4d6d;
 }
 
-/* text */
-p {
-  font-size: 15px;
-  line-height: 1.6;
+/* typewriter text */
+#text {
+  font-size: 17px;
+  line-height: 1.9;
   color: #ddd;
+  text-align: left;
+  white-space: pre-line;
+  margin-top: 20px;
+  min-height: 200px;
+}
+
+/* cursor */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  background: white;
+  margin-left: 5px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%,100% {opacity: 0;}
+  50% {opacity: 1;}
 }
 
 /* button */
 button {
-  margin-top: 20px;
-  padding: 10px 18px;
+  margin-top: 30px;
+  padding: 12px 22px;
   border-radius: 25px;
   border: none;
   background: #ff4d6d;
@@ -77,7 +87,7 @@ button {
 
 /* hearts */
 .heart {
-  position: absolute;
+  position: fixed;
   color: #ff4d6d;
   animation: floatUp 5s linear infinite;
 }
@@ -87,46 +97,23 @@ button {
   50% { opacity: 1; }
   100% { transform: translateY(-10vh); opacity: 0; }
 }
-
-/* responsive */
-@media(min-width:768px){
-  h1 { font-size: 40px; }
-  p { font-size: 18px; }
-  .main-photo {
-    width: 260px;
-    height: 260px;
-  }
-}
 </style>
 </head>
 
 <body>
 
-<!-- background -->
 <img id="bg" class="bg" src="couple1.jpeg">
 
 <div class="container">
 
-  <!-- FOTO UTAMA -->
   <img id="mainPhoto" class="main-photo" src="couple1.jpeg">
 
   <h1>happy birthday 💗</h1>
 
-  <p>
-  happy birthday amaaa 🎂✨
-finally… another level unlocked, sekarang udah temen level 2 hehe 
-semoga di umur yang sekarang, things get better for you—more happiness, less drama, and everything you’ve been hoping for pelan-pelan ke kejar.
+  <div id="text"></div>
 
-jujur ya, walaupun kita sekarang cuma temen, i won’t lie… i did see you as more than that at some point. maybe timingnya aja yang nggak pas, or maybe it’s just me. but it’s okay, i’m not here to make things weird.
+  <button onclick="start()">tap me 🎧</button>
 
-i just wanna say thank you—for the time, the conversations, and all the little moments we had. it actually meant something to me.
-
-and hey… don’t ever treat me like a stranger ya. if you ever need someone to talk to, or just someone to be around, i’m still here—no pressure, no expectations.
-
-anyway, enjoy your day, don’t overthink too much today. you deserve to feel happy, at least for today ✨
-  </p>
-
-  <button onclick="playMusic()">tap me 🎧</button>
 </div>
 
 <audio id="music" loop>
@@ -134,24 +121,61 @@ anyway, enjoy your day, don’t overthink too much today. you deserve to feel ha
 </audio>
 
 <script>
+const fullText = `happy birthday amaaa 🎂✨  
+finally… another level unlocked, sekarang udah temen level 2 hehe  
+
+semoga di umur yang sekarang everything gets better ya—lebih banyak hal baik, lebih banyak bahagia, dan pelan-pelan semua yang lu harapin bisa ke kejar.
+
+
+jujur ya, walaupun kita sekarang cuma temen, gua gak bohong… gua selalu ngeliat lu lebih dari itu. maybe it was just the wrong timing, atau mungkin perasaan gua aja yang terlalu jauh. tapi yaudah, gua gak mau bikin jadi aneh juga.
+
+
+gua cuma mau bilang makasih—buat waktu, obrolan, dan hal-hal kecil yang pernah kita lewatin. mungkin keliatannya biasa aja, tapi jujur itu ada artinya buat gua.  
+
+makasih juga udah pernah hadir di hidup gua, udah pernah perhatian, dan nemenin di beberapa momen. i really appreciate that.
+
+
+biarpun kadang lu suka lemot dikit 😭 tapi jujur gua suka sisi lu yang itu, makanya gua juga suka aja ngeledekin lu 😜
+
+
+dan mungkin setelah semua itu, gua juga belajar buat lebih nerima keadaan. apapun nanti keputusan lu, gua gak bakal benci lu kok. cuma ya… gua juga gak bisa bohong kalau masih ada sedikit harapan di gua.
+
+tapi di sisi lain, gua juga gak mau maksa apapun. jadi yaudah, kita jalanin aja se-natural mungkin.
+
+
+dan jangan jadi orang asing ya. kalo suatu saat lu butuh temen cerita atau sekedar butuh ditemenin, gua masih ada—santai aja, no pressure.
+
+
+anyway, enjoy your day ya. hari ini jangan overthink dulu, just be happy ✨
+
+
+note: tadinya mau full english biar keliatan keren dikit, tapi gua inget lu… yaudah lah ya 😜`;
+
+let index = 0;
+let speed = 30; // makin kecil makin cepet
+
+function start() {
+  document.getElementById("music").play();
+  typeWriter();
+}
+
+function typeWriter() {
+  if (index < fullText.length) {
+    document.getElementById("text").innerHTML += fullText.charAt(index);
+    index++;
+    setTimeout(typeWriter, speed);
+  }
+}
+
+/* slideshow */
 const images = ["couple1.jpeg","couple2.jpeg","couple3.jpeg"];
 let i = 0;
 
 setInterval(() => {
   i = (i + 1) % images.length;
-
-  // background ganti
   document.getElementById("bg").src = images[i];
-
-  // foto utama ikut ganti
   document.getElementById("mainPhoto").src = images[i];
-
 }, 4000);
-
-/* music */
-function playMusic() {
-  document.getElementById("music").play();
-}
 
 /* hearts */
 function createHeart() {
@@ -159,7 +183,6 @@ function createHeart() {
   heart.classList.add("heart");
   heart.innerText = "💗";
   heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = (Math.random() * 20 + 10) + "px";
   document.body.appendChild(heart);
 
   setTimeout(() => heart.remove(), 5000);
